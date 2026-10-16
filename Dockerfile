@@ -14,8 +14,6 @@ RUN npm i baseline-browser-mapping@latest -D
 # Copier le reste du code
 COPY . .
 
-RUN npx prisma generate
-
 # Variable d'environnement
 ENV PORT=3104
 
