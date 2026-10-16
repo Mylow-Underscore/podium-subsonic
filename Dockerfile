@@ -1,5 +1,5 @@
 # Image de base (Node LTS, légère)
-FROM node:22-alpine
+FROM node:20-alpine
 
 # Dossier de travail dans le container
 WORKDIR /app
