@@ -1,5 +1,5 @@
 # Image de base (Node LTS, légère)
-FROM node:20-alpine
+FROM node:22-alpine
 
 # Dossier de travail dans le container
 WORKDIR /app
@@ -8,7 +8,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Installer les dépendances (prod uniquement en production)
-RUN npm ci --omit=dev
+RUN npm i 
 RUN npm i baseline-browser-mapping@latest -D
 
 # Copier le reste du code
