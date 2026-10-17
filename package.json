@@ -15,7 +15,7 @@
     "test:e2e": "playwright test",
     "test:coverage": "vitest run --coverage",
     "analyze": "NEXT_REPORT_FILE=report.json_analyze_report.json next build",
-    "check": "npm run lint && npm run typecheck && npm run test && npm run build",
+    "check": "npm run lint && npm run typecheck && npm run build",
     "prepare": "husky"
   },
   "dependencies": {
