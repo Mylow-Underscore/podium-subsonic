@@ -1,51 +1,50 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { z } from 'zod';
+import { NextResponse, type NextRequest } from 'next/server'
 
-// Define common schemas for security checks
-const RequestSchema = z.object({
-  headers: z.record(z.string(), z.string()),
-  cookies: z.record(z.string(), z.string()),
-  body: z.any().optional(),
-  query: z.record(z.string(), z.string()).optional(),
-});
+const isDevelopment = process.env.NODE_ENV === 'development'
 
 export function middleware(request: NextRequest) {
-  const response = NextResponse.next();
+  const nonce = btoa(crypto.randomUUID())
 
-  // Security Headers
-  response.headers.set('X-Content-Type-Options', 'nosniff');
-  response.headers.set('X-Frame-Options', 'DENY');
-  response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
-  response.headers.set('Permissions-Policy', 'geolocation=(), microphone=(), camera=(), payment=()');
+  const contentSecurityPolicy = [
+    "default-src 'self'",
+    `script-src 'self' 'nonce-${nonce}' 'strict-dynamic'${isDevelopment ? " 'unsafe-eval'" : ''}`,
+    `style-src 'self' ${isDevelopment ? "'unsafe-inline'" : `'nonce-${nonce}'`}`,
+    "img-src 'self' blob: data:",
+    "font-src 'self'",
+    "object-src 'none'",
+    "base-uri 'self'",
+    "form-action 'self'",
+    "frame-ancestors 'none'",
+    'upgrade-insecure-requests',
+  ].join('; ')
 
-  // Content Security Policy (Simplified for this example)
-  const csp = `
-    default-src 'self';
-    script-src 'self' 'unsafe-inline' 'unsafe-eval';
-    style-src 'self' 'unsafe-inline';
-    img-src 'self' data:;
-    font-src 'self';
-    object-src 'none';
-    base-uri 'self';
-    form-action 'self';
-    frame-ancestors 'none';
-    upgrade-insecure-requests;
-  `.replace(/\s+/g, ' ').trim();
+  const requestHeaders = new Headers(request.headers)
+  requestHeaders.set('x-nonce', nonce)
+  requestHeaders.set('Content-Security-Policy', contentSecurityPolicy)
 
-  response.headers.set('Content-Security-Policy', csp);
+  const response = NextResponse.next({ request: { headers: requestHeaders } })
 
-  return response;
+  response.headers.set('Content-Security-Policy', contentSecurityPolicy)
+  response.headers.set('X-Content-Type-Options', 'nosniff')
+  response.headers.set('X-Frame-Options', 'DENY')
+  response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin')
+  response.headers.set(
+    'Permissions-Policy',
+    'geolocation=(), microphone=(), camera=(), payment=()',
+  )
+
+  if (!isDevelopment) {
+    response.headers.set(
+      'Strict-Transport-Security',
+      'max-age=63072000; includeSubDomains',
+    )
+  }
+
+  return response
 }
 
 export const config = {
   matcher: [
-    /*
-     * Match all request paths except for:
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
-     * - all files inside the /_next folder
-     */
     '/((?!_next|[^?]*\\.(?:html?|css|js|json|gif|png|ico|webp)$).*)',
   ],
-};
+}
