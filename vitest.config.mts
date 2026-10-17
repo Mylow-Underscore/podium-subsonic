@@ -1,12 +1,16 @@
-import { defineConfig } from 'vitest/config'
+import { fileURLToPath } from 'node:url'
 import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vitest/config'
 
 export default defineConfig({
   plugins: [react()],
+  resolve: {
+    alias: {
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
+    },
+  },
   test: {
-    globals: true,
     environment: 'jsdom',
-    setupFiles: ['./vitest.setup.ts'],
-    // Fix: Removing 'resources: true' as it causes a type mismatch in some JSDom configurations
+    include: ['src/**/*.{test,spec}.{ts,tsx}'],
   },
 })

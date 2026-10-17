@@ -28,6 +28,10 @@
         "./src/*"
       ]
     },
+    "types": [
+      "vitest/globals",
+      "@testing-library/jest-dom"
+    ],
     "noEmit": true,
     "incremental": true,
     "plugins": [
