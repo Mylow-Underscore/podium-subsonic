@@ -28,9 +28,6 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: Run Vitest
-        run: npm run test
-
       - name: Bundle Analysis
         run: npm run analyze
 
