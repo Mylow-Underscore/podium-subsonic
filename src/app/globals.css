@@ -13,13 +13,13 @@
   --radius-xl: var(--radius-xl);
   --shadow-xl: var(--shadow-xl);
 
-  --font-sans: 'Inter', ui-sans-serif, system-ui;
+  --font-sans: "Inter", ui-sans-serif, system-ui;
 }
 
 :root {
   /* Brand Colors - Podium Subsonic Identity */
-  --brand-primary: #0A0A0A;
-  --brand-secondary: #F5F5F7;
+  --brand-primary: #0a0a0a;
+  --brand-secondary: #f5f5f7;
   --brand-accent: #0071e3;
   --brand-muted: #86868b;
   --brand-destructive: #ff3b30;
@@ -29,7 +29,8 @@
 
   /* Radii & Shadows */
   --radius-xl: 1.25rem;
-  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.05);
+  --shadow-xl:
+    0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.05);
 
   /* Fluid Typography */
   --text-xs: 0.75rem;
@@ -51,12 +52,42 @@
   --spacing-16: 4rem;
 }
 
-.dark {
-  --brand-primary: #F5F5F7;
-  --brand-secondary: #0A0A0A;
-  --brand-accent: #0a84ff;
-  --brand-muted: #86868b;
-  --brand-destructive: #ff453a;
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Brand Colors - Podium Subsonic Identity */
+    --brand-primary: #f5f5f7;
+    --brand-secondary: #0a0a0a;
+    --brand-accent: #0a84ff;
+    --brand-muted: #86868b;
+    --brand-destructive: #ff453a;
+    --brand-success: #34c759;
+    --brand-warning: #ff9500;
+    --brand-info: #0071e3;
+
+    /* Radii & Shadows */
+    --radius-xl: 1.25rem;
+    --shadow-xl:
+      0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.05);
+
+    /* Fluid Typography */
+    --text-xs: 0.75rem;
+    --text-sm: 0.875rem;
+    --text-base: 1rem;
+    --text-lg: 1.125rem;
+    --text-xl: 1.25rem;
+    --text-2xl: 1.5rem;
+    --text-3xl: 1.875rem;
+    --text-4xl: 2.25rem;
+    --text-5xl: 3rem;
+
+    /* Spacing Scale */
+    --spacing-1: 0.25rem;
+    --spacing-2: 0.5rem;
+    --spacing-4: 1rem;
+    --spacing-8: 2rem;
+    --spacing-12: 3rem;
+    --spacing-16: 4rem;
+  }
 }
 
 /* Custom Clip Paths */
@@ -66,5 +97,9 @@
 
 /* Refined Hero Gradient */
 .hero-gradient-overlay {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(0, 113, 227, 0.1) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.25) 0%,
+    rgba(0, 113, 227, 0.1) 100%
+  );
 }

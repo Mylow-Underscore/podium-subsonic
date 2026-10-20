@@ -34,13 +34,13 @@ export const Hero = ({ title, description, ctaText, className }: HeroProps) => {
           </div>
         </div>
 
-        <div className="w-full md:w-1/2 group">
+        {/* <div className="w-full md:w-1/2 group">
           <div className="relative aspect-video bg-gray-200 rounded-2xl overflow-hidden border-4 border-brand-secondary/10 shadow-xl">
              <div className="absolute inset-0 flex items-center justify-center text-gray-400">
                <Image src="/images/hero_img_1.jpg" alt="Hero Image" fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
              </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );

@@ -30,7 +30,7 @@ export const ProcessTimeline = () => {
             {steps.map((step, index) => (
               <div key={index} className="relative flex flex-col items-center text-center">
                 {/* Circle Marker */}
-                <div className="z-10 w-10 h-10 rounded-full text-black flex items-center justify-center font-bold shadow-lg border-4 border-brand-primary">
+                <div className="z-10 w-10 h-10 rounded-full flex items-center justify-center font-bold shadow-lg border-4">
                   {index + 1}
                 </div>
 
