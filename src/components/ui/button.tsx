@@ -16,10 +16,10 @@ export const Button = ({
   const baseStyles = "px-6 py-3 rounded-lg font-bold transition-all active:scale-95 disabled:opacity-50";
 
   const variants = {
-    primary: "bg-brand-primary text-brand-secondary hover:opacity-90",
-    secondary: "bg-brand-secondary text-brand-primary hover:bg-gray-100",
-    outline: "border border-brand-secondary text-brand-secondary hover:bg-brand-primary hover:text-black/70",
-    ghost: "bg-transparent text-brand-primary hover:bg-gray-100"
+    primary: "duration-450 bg-brand-primary text-brand-secondary hover:opacity-90",
+    secondary: "duration-450 bg-brand-secondary text-brand-primary hover:bg-gray-100",
+    outline: "duration-450 border border-brand-secondary text-brand-secondary hover:bg-brand-primary hover:text-black/70",
+    ghost: "duration-450 bg-transparent text-brand-primary hover:bg-gray-100"
   };
 
   const sizes = {

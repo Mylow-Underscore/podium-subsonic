@@ -11,7 +11,7 @@ export const ContactCTA = () => {
           Contactez notre équipe dès aujourd&apos;hui pour discuter de votre prochain événement et obtenir une proposition sur mesure.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button size="lg" className="transition-colors hover:bg-secondary/90">
+          <Button size="lg" className="hover:bg-secondary/90">
             Prendre rendez-vous
           </Button>
           <Button variant="outline" size="lg" className="border-white text-white hover:bg-white/10">
